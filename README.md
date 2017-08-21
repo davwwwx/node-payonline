@@ -1,15 +1,23 @@
-node-payonline
+payonline-wrapper
 ==============
+
+## [Forked from node-payonline](https://github.com/PayOnline/node-payonline)
 
 This is a thin wrapper library that makes using PayOnline API a bit easier, doing all the signing/checking job for you.
 
 > **Note that v0.1 is planned to be backwards-incompatible, reflecting forthcoming overhaul of PayOnline API**
 
+Added
+---------------
+ - Random method
+ - Rebill method
+
+
 Getting started
 ---------------
 
 ```
-npm install payonline
+npm install payonline-wrapper
 ```
 
 ```js
@@ -26,6 +34,24 @@ payOnlineClient.getPaymentUrl({
 	"Currency": "RUB"
 }, function (err, url) {
 	console.log("Payment url: " + url);
+});
+
+payOnlineClient.getrandom({
+	"OrderId": "TestOrderId",
+	"Amount": "random-string",
+	"Currency": "RUB",
+	"ReturnUrl": "https://some-callback-url.com"
+},function (err, url){
+	console.log("Random method url: " + url);
+});
+
+payOnlineClient.getrebill({
+	"OrderId": "TestOrderId",
+	"Amount": "2.00",
+	"Currency": "RUB",
+	"RebillAnchor": "user-rebill-anchor"
+},function (err, url){
+	console.log("Rebill method url: " + url);
 });
 
 payOnlineClient.parseCallback(
