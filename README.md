@@ -21,7 +21,7 @@ npm install payonline-wrapper
 ```
 
 ```js
-var PayOnline = require('payonline');
+var PayOnline = require('payonline-wrapper');
 
 var payOnlineClient = new PayOnline({
 	merchantId: "put your id here",
